@@ -15,7 +15,7 @@ EXPOSE 11211
 RUN yum install --setopt=tsflags=nodocs -y memcached && \
     yum clean all
 
-COPY docker-assets/container-entrypoint /usr/bin
+COPY container-assets/container-entrypoint /usr/bin
 
 USER memcached
 ENTRYPOINT ["container-entrypoint"]
