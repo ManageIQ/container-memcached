@@ -7,7 +7,11 @@ MAINTAINER ManageIQ https://github.com/ManageIQ/manageiq-appliance-build
 LABEL io.k8s.description="Memcached is a general-purpose distributed memory object caching system" \
       io.k8s.display-name="Memcached" \
       io.openshift.expose-services="11211:memcached" \
-      io.openshift.tags="memcached"
+      io.openshift.tags="memcached" \
+      name="Memcached" \
+      summary="Memcached Image" \
+      vendor="ManageIQ" \
+      description="Memcached is a general-purpose distributed memory object caching system"
 
 EXPOSE 11211
 
