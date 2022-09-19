@@ -7,7 +7,7 @@ RUN cd /tmp && \
     if [[ "$(cat .git/HEAD)" == "ref:"* ]]; then sha=$(cat .git/$sha); fi && \
     echo "$(date +"%Y%m%d%H%M%S")-$sha" > /tmp/BUILD
 
-FROM registry.access.redhat.com/ubi9
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest
 
 # Memcached image for OpenShift ManageIQ
 
@@ -24,8 +24,8 @@ LABEL io.k8s.description="Memcached is a general-purpose distributed memory obje
 
 EXPOSE 11211
 
-RUN yum install --setopt=tsflags=nodocs -y memcached && \
-    yum clean all
+RUN microdnf install --setopt=tsflags=nodocs -y memcached && \
+    microdnf clean all
 
 COPY container-assets/container-entrypoint /usr/bin
 
