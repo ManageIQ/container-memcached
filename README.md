@@ -1,2 +1,2 @@
 # container-memcached
-Container for a CentOS 7 memcached server
+Container for a UBI 9 memcached server
