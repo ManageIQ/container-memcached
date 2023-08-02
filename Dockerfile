@@ -33,6 +33,6 @@ COPY container-assets/container-entrypoint /usr/bin
 RUN mkdir -p /opt/manageiq/manifest
 COPY --from=manifest /tmp/BUILD /opt/manageiq/manifest
 
-USER memcached
+USER 998
 ENTRYPOINT ["container-entrypoint"]
 CMD ["memcached"]
