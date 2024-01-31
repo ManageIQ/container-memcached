@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:latest AS manifest
+FROM registry.access.redhat.com/ubi9/ubi-minimal:latest AS manifest
 
 COPY .git /tmp/.git
 
@@ -7,7 +7,7 @@ RUN cd /tmp && \
     if [[ "$(cat .git/HEAD)" == "ref:"* ]]; then sha=$(cat .git/$sha); fi && \
     echo "$(date +"%Y%m%d%H%M%S")-$sha" > /tmp/BUILD
 
-FROM registry.access.redhat.com/ubi8/ubi
+FROM registry.access.redhat.com/ubi9/ubi
 
 # Memcached image for OpenShift ManageIQ
 
@@ -24,9 +24,8 @@ LABEL io.k8s.description="Memcached is a general-purpose distributed memory obje
 
 EXPOSE 11211
 
-# Install latest memcached for Centos7
-RUN yum install --setopt=tsflags=nodocs -y memcached && \
-    yum clean all
+RUN dnf install --setopt=tsflags=nodocs -y memcached && \
+    dnf clean all
 
 COPY container-assets/container-entrypoint /usr/bin
 
