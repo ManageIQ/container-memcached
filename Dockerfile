@@ -25,7 +25,8 @@ LABEL io.k8s.description="Memcached is a general-purpose distributed memory obje
 EXPOSE 11211
 
 # Install latest memcached for Centos7
-RUN yum install --setopt=tsflags=nodocs -y memcached && \
+RUN dnf -y --disableplugin=subscription-manager --setopt=tsflags=nodocs update && \
+    yum install --setopt=tsflags=nodocs -y memcached && \
     yum clean all
 
 COPY container-assets/container-entrypoint /usr/bin
