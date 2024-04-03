@@ -24,7 +24,8 @@ LABEL io.k8s.description="Memcached is a general-purpose distributed memory obje
 
 EXPOSE 11211
 
-RUN dnf install --setopt=tsflags=nodocs -y memcached && \
+RUN dnf -y --disableplugin=subscription-manager --setopt=tsflags=nodocs update && \
+    dnf install --setopt=tsflags=nodocs -y memcached && \
     dnf clean all
 
 COPY container-assets/container-entrypoint /usr/bin
